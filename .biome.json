@@ -1,25 +1,62 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-  "linter": { "enabled": true, "rules": { "recommended": true } },
-  "formatter": {
-    "files": {
-      "ignore": [
-        "node_modules",
-        "dist",
-        ".vite",
-        "coverage",
-        ".next",
-        "build",
-        "Dockerfile",
-        "Dockerfile.dev",
-        "**/*.scss",
-        "**/*.md",
-        "**/*.json"
-      ]
-    },
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2
+  "files": {
+    "ignore": [
+      "node_modules",
+      "dist",
+      ".vite",
+      "coverage",
+      ".next",
+      "build",
+      "Dockerfile",
+      "Dockerfile.dev"
+    ]
   },
-  "javascript": { "formatter": { "quoteStyle": "single" } }
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "tab",
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "lineEnding": "lf"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noArrayIndexKey": "warn"
+      },
+      "a11y": {
+        "useButtonType": "error"
+      }
+    }
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "single",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "asNeeded",
+      "bracketSpacing": true
+    }
+  },
+  "typescript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "single",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "asNeeded",
+      "bracketSpacing": true
+    }
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  }
 }

@@ -18,12 +18,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@store/*": ["src/store/*"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
-      "@types/*": ["src/types/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@components": ["src/components"],
+      "@store": ["src/store"],
+      "@hooks": ["src/hooks"]
     }
   },
   "include": ["src", "eslint.config.mjs", "vite.config.ts"],
