@@ -1,0 +1,20 @@
+services:
+  funtech-slider:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: funtech-slider:dev
+    container_name: funtech-slider-dev
+    working_dir: /usr/src/app
+    network_mode: host
+    init: true
+    volumes:
+      - ./:/usr/src/app:cached
+      - /usr/src/app/node_modules
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=https://api.coingecko.com/api/v3/nfts/list
+      - CHOKIDAR_USEPOLLING=true
+    command: sh -c "yarn dev --host 0.0.0.0 --port 3000"
