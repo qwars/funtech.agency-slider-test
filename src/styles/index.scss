@@ -1,5 +1,12 @@
+@import url(./variables.scss);
+
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: var(--text-color);
+  margin: 0px;
+  padding: 0px;
+  justify-content: flex-end;
+  font-family: 'Inter';
 }

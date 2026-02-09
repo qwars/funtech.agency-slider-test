@@ -1,5 +1,5 @@
-import type React from "react";
-import { Component, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import { Component } from "react";
 import "./error-boundary.scss";
 
 interface Props {
@@ -30,7 +30,7 @@ export class ErrorBoundary extends Component<Props, State> {
 	};
 
 	render() {
-		if (this.state.hasError) return <div />;
+		if (this.state.hasError) return <div className="error-boundary" />;
 
 		return this.props.children;
 	}
