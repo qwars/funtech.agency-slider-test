@@ -1,1 +1,1 @@
-export { SkeletonCard } from "./skeleton-card";
+export { SkeletonCard } from './skeleton-card';

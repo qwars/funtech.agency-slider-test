@@ -1,4 +1,4 @@
-import { ErrorBoundary, Footer, Header, Main } from "./components";
+import { ErrorBoundary, Footer, Header, Main } from './components';
 
 const App = () => {
 	return (

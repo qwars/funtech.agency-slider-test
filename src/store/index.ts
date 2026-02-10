@@ -1,2 +1,2 @@
-export * from "./nft-slice";
-export * from "./store-slice";
+export * from './nft-slice';
+export * from './store-slice';

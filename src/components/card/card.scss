@@ -29,6 +29,8 @@
     &>aside {
         position: absolute;
 
+        width: 115px;
+        height: 34px;
         top: 28px;
         right: 28px;
         z-index: 3;
@@ -45,7 +47,19 @@
         font-size: 14px;
         line-height: 100%;
         color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    &>figcaption {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0px;
+        gap: 8px;
+        width: 100%;
+        height: stretch;
     }
 
     figcaption>h4 {
@@ -56,19 +70,24 @@
         font-weight: 600;
         font-size: 22px;
         line-height: 24px;
-
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: #141416;
+        width: stretch;
     }
 
     figcaption>aside {
-        margin-top: 24px;
         display: grid;
         gap: 0px 28px;
         grid-template-columns: 1fr auto;
+        width: stretch;
+        align-self: flex-end;
 
         &>dfn {
-
-
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 400;
@@ -116,7 +135,7 @@
             border-radius: 12px;
             border: 0px solid transparent;
 
-
+            white-space: nowrap;
 
             font-family: 'Poppins';
             font-style: normal;
@@ -144,6 +163,15 @@
         gap: 14px;
         padding: 10px;
 
+        &>aside {
+            width: 82px;
+            height: 24px;
+            left: 105px;
+            top: 20px;
+            border-radius: 7px;
+            font-size: 10px;
+        }
+
         figcaption>h4 {
             font-size: 16px;
             line-height: 18px;
@@ -151,10 +179,11 @@
         }
 
         figcaption>aside {
-            margin-top: 12px;
+
 
             button {
                 height: 38px;
+                font-size: 11px;
             }
 
             dfn {

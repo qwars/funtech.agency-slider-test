@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
 
     &>aside {
         box-shadow: 0px 43px 34px -25.8701px rgba(15, 15, 15, 0.12);
@@ -11,7 +12,7 @@
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        background-color: white;
+        background: white;
 
         button {
             flex-grow: 1;

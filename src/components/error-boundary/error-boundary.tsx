@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-import { Component } from "react";
-import "./error-boundary.scss";
+import type { ReactNode } from 'react';
+import { Component } from 'react';
+import './error-boundary.scss';
 
 interface Props {
 	children: ReactNode;
@@ -22,7 +22,7 @@ export class ErrorBoundary extends Component<Props, State> {
 	}
 
 	componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-		console.error("ErrorBoundary caught an error:", error, errorInfo);
+		console.error('ErrorBoundary caught an error:', error, errorInfo);
 	}
 
 	handleReset = () => {
@@ -30,7 +30,7 @@ export class ErrorBoundary extends Component<Props, State> {
 	};
 
 	render() {
-		if (this.state.hasError) return <div className="error-boundary" />;
+		if (this.state.hasError) return <div className='error-boundary' />;
 
 		return this.props.children;
 	}
