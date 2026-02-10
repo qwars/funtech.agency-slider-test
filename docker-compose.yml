@@ -1,0 +1,17 @@
+services:
+  funtech-slider:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: funtech-slider:dev
+    container_name: funtech-slider-dev
+    working_dir: /usr/src/app
+    network_mode: host
+    init: true
+    volumes:
+      - ./:/usr/src/app:cached
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+    command: sh -c "yarn dev --host 0.0.0.0 --port 3000"
