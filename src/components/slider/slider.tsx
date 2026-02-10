@@ -27,7 +27,7 @@ export const Slider: React.FC = () => {
 						const lastItemIndex = items.indexOf(prev[prev.length - 1]);
 
 						const startIndex = (lastItemIndex - SLIDE_COUNT + items.length) % items.length;
-						const takeCount = Math.min(items.length, SLIDE_COUNT + 2);
+						const takeCount = Math.min(items.length, SLIDE_COUNT);
 
 						return [...items, ...items].slice(startIndex, startIndex + takeCount);
 					}),
@@ -46,7 +46,7 @@ export const Slider: React.FC = () => {
 						const firstItemIndex = items.indexOf(prev[0]);
 
 						const startIndex = (firstItemIndex + 1) % items.length;
-						const takeCount = Math.min(items.length, SLIDE_COUNT + 2);
+						const takeCount = Math.min(items.length, SLIDE_COUNT);
 
 						return [...items, ...items].slice(startIndex, startIndex + takeCount);
 					}),
@@ -62,7 +62,7 @@ export const Slider: React.FC = () => {
 	useEffect(() => {
 		status === 'succeeded' &&
 			items.length > 0 &&
-			setSliceItems(items.length > SLIDE_COUNT ? items.slice(0, SLIDE_COUNT + 2) : items);
+			setSliceItems(items.length > SLIDE_COUNT ? items.slice(0, SLIDE_COUNT) : items);
 	}, [status, items]);
 
 	return (
