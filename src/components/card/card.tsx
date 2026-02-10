@@ -11,11 +11,7 @@ interface Props {
 export const Card: React.FC<Props> = ({ nft }) => {
 	const timeLeft = useTimer(nft.endTime);
 	return (
-		<motion.figure
-			className='funtech-slider-card'
-			whileHover={{ y: -10, scale: 1.02 }}
-			transition={{ type: 'spring', stiffness: 300 }}
-		>
+		<motion.figure className='funtech-slider-card'>
 			<motion.aside>{timeLeft}</motion.aside>
 			<motion.img src={nft.imageUrl} alt='alt' />
 			<motion.figcaption>

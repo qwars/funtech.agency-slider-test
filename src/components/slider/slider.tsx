@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import ArrowLeft from './ArrowLeft.svg?react';
 import ArrowRight from './ArrowRight.svg?react';
 import './slider.scss';
@@ -7,36 +7,52 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { fetchNfts, type NftCard, skeletonNftCard } from '@/store';
 import { Card } from '../card';
 
+const SLIDE_COUNT = 7;
+const SLIDE_PERCENTAGE = 100 / SLIDE_COUNT + 0.75;
+
 export const Slider: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { items, status } = useAppSelector((state) => state.nfts);
 	const [sliceItems, setSliceItems] = useState<NftCard[]>(Array(7).fill(skeletonNftCard));
+	const controls = useAnimation();
 
 	const previousElementCardCenter = useCallback(() => {
-		setSliceItems((prev) => {
-			if (items.length === 0) return prev;
+		controls.start({ x: `${SLIDE_PERCENTAGE}%` }).then(() =>
+			requestAnimationFrame(
+				() =>
+					controls.set({ x: '0%' }) ??
+					setSliceItems((prev) => {
+						if (items.length === 0) return prev;
 
-			const lastItemIndex = items.indexOf(prev[prev.length - 1]);
+						const lastItemIndex = items.indexOf(prev[prev.length - 1]);
 
-			const startIndex = (lastItemIndex - 7 + items.length) % items.length;
-			const takeCount = Math.min(items.length, 7);
+						const startIndex = (lastItemIndex - SLIDE_COUNT + items.length) % items.length;
+						const takeCount = Math.min(items.length, SLIDE_COUNT + 2);
 
-			return [...items, ...items].slice(startIndex, startIndex + takeCount);
-		});
-	}, [items]);
+						return [...items, ...items].slice(startIndex, startIndex + takeCount);
+					}),
+			),
+		);
+	}, [items, controls]);
 
 	const nextElementCardCenter = useCallback(() => {
-		setSliceItems((prev) => {
-			if (items.length === 0) return prev;
+		controls.start({ x: `-${SLIDE_PERCENTAGE}%` }).then(() =>
+			requestAnimationFrame(
+				() =>
+					controls.set({ x: '0%' }) ??
+					setSliceItems((prev) => {
+						if (items.length === 0) return prev;
 
-			const firstItemIndex = items.indexOf(prev[0]);
+						const firstItemIndex = items.indexOf(prev[0]);
 
-			const startIndex = (firstItemIndex + 1) % items.length;
-			const takeCount = Math.min(items.length, 7);
+						const startIndex = (firstItemIndex + 1) % items.length;
+						const takeCount = Math.min(items.length, SLIDE_COUNT + 2);
 
-			return [...items, ...items].slice(startIndex, startIndex + takeCount);
-		});
-	}, [items]);
+						return [...items, ...items].slice(startIndex, startIndex + takeCount);
+					}),
+			),
+		);
+	}, [items, controls]);
 
 	const hasFetched = useRef(false);
 	useEffect(() => {
@@ -44,17 +60,19 @@ export const Slider: React.FC = () => {
 	}, [dispatch, status]);
 
 	useEffect(() => {
-		status === 'succeeded' && items.length > 0 && setSliceItems(items.length > 7 ? items.slice(0, 7) : items);
+		status === 'succeeded' &&
+			items.length > 0 &&
+			setSliceItems(items.length > SLIDE_COUNT ? items.slice(0, SLIDE_COUNT + 2) : items);
 	}, [status, items]);
 
 	return (
 		<motion.section className='funtech-slider' initial='hidden' animate='visible'>
-			<div className='container'>
+			<motion.div className='container' animate={controls} transition={{ duration: 0.3, ease: 'easeInOut' }}>
 				{status === 'failed' && <div />}
 				{sliceItems.map((item, i) => (
 					<Card key={item.id + i} nft={item} />
 				))}
-			</div>
+			</motion.div>
 			<AnimatePresence mode='wait'>
 				<motion.aside
 					initial={{ opacity: 0 }}
